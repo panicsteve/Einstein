@@ -264,6 +264,7 @@ THostInfo::RetrieveUserInfo( void )
 #if TARGET_OS_OPENSTEP
 #ifdef TARGET_IOS
 #else
+		/*
 		// On MacOS X, I try:
 		// - The AddressBook
 		// - Carbon access to the full name
@@ -467,7 +468,7 @@ THostInfo::RetrieveUserInfo( void )
 			
 			break;
 		}
-
+		 */
 #endif
 #endif
 

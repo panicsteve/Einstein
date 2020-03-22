@@ -79,5 +79,5 @@ add_executable(einstein
 	UUTF16Conv.cpp
 )
 
-target_link_libraries(einstein ${SDL2_LIBRARIES} "-framework AddressBook -framework Foundation")
+target_link_libraries(einstein ${SDL2_LIBRARIES} "-framework Foundation")
 
