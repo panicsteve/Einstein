@@ -45,6 +45,17 @@ void EventHandleMouseButton(SDL_MouseButtonEvent *event)
 	assert(event != NULL);
 	
 	SDL_Log("Mouse button event");
+
+    SDL_Window *window = SDL_GetWindowFromID(event->windowID);
+    
+    if ( event->type == SDL_MOUSEBUTTONDOWN )
+    {
+        MainMouseDown(window, event->x, event->y);
+    }
+    else if ( event->type == SDL_MOUSEBUTTONUP )
+    {
+        MainMouseUp(window, event->x, event->y);
+    }
 }
 
 void EventHandleMouseMotion(SDL_MouseMotionEvent *event)
@@ -52,7 +63,7 @@ void EventHandleMouseMotion(SDL_MouseMotionEvent *event)
 	assert(event != NULL);
 
 	SDL_Window *window = SDL_GetWindowFromID(event->windowID);
-	MainDidMoveMouse(window, event->x, event->y);
+	MainMouseMove(window, event->x, event->y);
 }
 
 void EventHandleQuit(SDL_QuitEvent *event)

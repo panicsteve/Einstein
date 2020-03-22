@@ -60,7 +60,7 @@
 struct NewtonPixmap {
 	KUInt32 addy;
 	KUInt32 rowBytes;
-	TScreenManager::SRect bounds;
+	SRect bounds;
 	KUInt32 flags;
 	KUInt32 table;
 };
@@ -1604,7 +1604,7 @@ TNativePrimitives::ExecuteScreenDriverNative( KUInt32 inInstruction )
 				(void) mMemory->Read(mProcessor->GetRegister(13) + 4, theMode);
 				
 				//	ULong	Blit(PixelMap*, Rect*, Rect*, long);
-				TScreenManager::SRect srcRect;
+				SRect srcRect;
 				
 				KUInt32 tmp = 0;
 				
@@ -1615,7 +1615,7 @@ TNativePrimitives::ExecuteScreenDriverNative( KUInt32 inInstruction )
 				srcRect.fBottom = (KUInt16) (tmp >> 16);
 				srcRect.fRight = (KUInt16) (tmp & 0x0000FFFF);
 	
-				TScreenManager::SRect dstRect;
+				SRect dstRect;
 	
 				(void) mMemory->Read(mProcessor->GetRegister(3), tmp);
 				dstRect.fTop = (KUInt16) (tmp >> 16);

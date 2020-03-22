@@ -22,6 +22,7 @@
 // ==============================
 
 #include "TSDLScreenManager.h"
+#include "main.h"
 
 // Einstein
 #include "TLog.h"
@@ -104,48 +105,7 @@ TSDLScreenManager::TabletOrientationChanged( EOrientation inNewOrientation )
 void
 TSDLScreenManager::UpdateScreenRect( SRect* inUpdateRect )
 {
-	KUInt16 top = inUpdateRect->fTop;
-	KUInt16 left = inUpdateRect->fLeft;
-	KUInt16 height = inUpdateRect->fBottom - top;
-	KUInt16 width = inUpdateRect->fRight - left;
-
-	KUInt8 *theScreenBuffer = GetScreenBuffer();
-	KUInt32 theScreenWidth = GetScreenWidth();
-	KUInt32 srcRowBytes = theScreenWidth * kBitsPerPixel / 8;
-	KUInt32 dstRowBytes = theScreenWidth * 32 / 8;
-	KUInt32 srcWidthInBytes = width * kBitsPerPixel / 8;
-
-	KUInt8 *mImageBuffer = (KUInt8 *)malloc(320 * 480 * 4);
-	KUInt8 *srcRowPtr = theScreenBuffer + (top * srcRowBytes) + (left * kBitsPerPixel / 8);
-	KUInt8* dstRowPtr =
-		((KUInt8*) mImageBuffer)
-		+ (top * dstRowBytes)
-		+ (left * 32 / 8);
-
-	for ( int indexRows = height; indexRows != 0; indexRows-- )
-	{
-		KUInt8* srcCursor = srcRowPtr;
-		KUInt8* srcEnd = srcRowPtr + srcWidthInBytes;
-		KUInt32* dstCursor = (KUInt32*) dstRowPtr;
-		do {
-			KUInt8 theByte = *srcCursor++;
-			// First pixel
-			KUInt32 thePixel = (theByte & 0xF0) >> 4;
-			*dstCursor++ = 0xff0000ff;
-			// Second pixel
-			thePixel = (theByte & 0x0F);
-			*dstCursor++ = 0xff00ffff;
-		} while (srcCursor < srcEnd);
-		srcRowPtr += srcRowBytes;
-		dstRowPtr += dstRowBytes;
-	}
-
-	printf("%02x%02x%02x%02x ", mImageBuffer[0], mImageBuffer[1], mImageBuffer[2], mImageBuffer[3]);
-	printf("%02x%02x%02x%02x ", mImageBuffer[4], mImageBuffer[5], mImageBuffer[6], mImageBuffer[7]);
-	printf("%02x%02x%02x%02x ", mImageBuffer[8], mImageBuffer[9], mImageBuffer[10], mImageBuffer[11]);
-	printf("%02x%02x%02x%02x \n", mImageBuffer[12], mImageBuffer[13], mImageBuffer[14], mImageBuffer[15]);
-
-	free(mImageBuffer);
+    MainUpdateScreenRect(inUpdateRect);
 }
 
 // ========================================================================= //

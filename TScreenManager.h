@@ -36,6 +36,13 @@ class TStream;
 #define	TWOHUNDREDANDFIFTYSIX_GREYS		0
 #define MILLIONS_OF_COLORS				0
 
+struct SRect {
+    KUInt16    fTop;
+    KUInt16    fLeft;
+    KUInt16    fBottom;
+    KUInt16    fRight;
+};
+
 ///
 /// Class to handle the display and the tablet.
 /// The tablet needs two event handlers:
@@ -56,12 +63,6 @@ public:
 	///
 	/// Rect structure (as defined in QD)
 	///
-	struct SRect {
-		KUInt16	fTop;
-		KUInt16	fLeft;
-		KUInt16	fBottom;
-		KUInt16	fRight;
-	};
 	
 	///
 	/// Screen & tablet orientations.
