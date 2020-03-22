@@ -31,7 +31,7 @@ int main(int argc, const char *argv[])
 	else
 	{
         const char *romPath = "717006.rom";
-        const char *rexPath = "717006.rom";
+        const char *rexPath = "717006.rex";
         const char *flashPath = "einstein.flash";
 		const int ramSize = 0x40;
 
